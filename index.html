@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Seguros | Seguros de Viaje de Aventura, Trekking y Cultura</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
+        .bg-next-dark { background-color: #060c21; }
+        .text-next-cyan { color: #00d2ff; }
+        .accent-gradient { background: linear-gradient(135deg, #00d2ff 0%, #0072ff 100%); }
+        .bg-gradient-dark { background: linear-gradient(180deg, #060c21 0%, #0b1536 100%); }
+        
+        /* Regla de seguridad: Fuerza al botón oficial de Vapi a estar siempre encima de todo */
+        vapi-cb, #vapi-support-btn {
+            z-index: 2147483647 !important;
+            position: fixed !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-xl border-b border-slate-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-10">
+                <a href="#" class="text-2xl font-extrabold tracking-tighter flex items-center gap-2 text-slate-950">
+                    <i class="fas fa-compass text-next-cyan text-3xl"></i>
+                    <span>NEXT<span class="font-light text-slate-400 text-sm ml-1 uppercase tracking-widest">Seguros</span></span>
+                </a>
+                <div class="hidden lg:flex space-x-8 text-sm font-semibold uppercase tracking-wider text-slate-600">
+                    <a href="#productos" class="hover:text-cyan-600 transition">Nuestros Seguros</a>
+                    <a href="#coberturas" class="hover:text-cyan-600 transition">Ventajas de Ruta</a>
+                    <a href="#servicios-comunes" class="hover:text-cyan-600 transition">Respaldo Global</a>
+                    <a href="#asesoria" class="hover:text-cyan-600 transition">Tu Guía Santi</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="hidden md:flex items-center gap-2 text-sm font-bold text-slate-700 mr-2">
+                    <i class="fas fa-phone-alt text-next-cyan"></i> Central de Rescate: <span class="text-slate-950">#360</span>
+                </span>
+                <button onclick="startVapiCall()" class="accent-gradient text-white px-5 py-2.5 rounded-xl font-bold hover:shadow-lg hover:shadow-cyan-100 transition text-sm flex items-center gap-2">
+                    <i class="fas fa-microphone"></i> Habla con nosotros
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative pt-32 pb-24 bg-gradient-dark text-white overflow-hidden min-h-[85vh] flex items-center">
+        <div class="absolute inset-0 opacity-30">
+            <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=1920&q=80" alt="Senderismo en alta montaña" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center relative z-10 w-full">
+            <div class="lg:col-span-7 space-y-6">
+                <span class="bg-cyan-500/15 text-next-cyan border border-cyan-500/30 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider inline-block">
+                    Especialistas en Naturaleza, Senderismo y Cultura Nómada
+                </span>
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
+                    Tu única tarea es explorar. Nosotros nos encargamos de <span class="text-transparent bg-clip-text accent-gradient">traerte a salvo.</span>
+                </h1>
+                <p class="text-lg text-slate-300 max-w-xl leading-relaxed">
+                    Sabemos lo que se siente llegar a la cima o perderse intencionalmente en callejones milenarios. Por eso creamos pólizas que te protegen donde el asfalto termina. Cero deducibles, cero letra pequeña, solo tú y tu próxima gran historia.
+                </p>
+                
+                <div class="pt-4 flex flex-wrap gap-4 items-center">
+                    <button onclick="startVapiCall()" class="accent-gradient text-white font-bold px-8 py-4 rounded-2xl hover:scale-105 transition-all shadow-xl shadow-cyan-900/40 flex items-center gap-3">
+                        <i class="fas fa-microphone"></i> Pregúntale a Santi por voz
+                    </button>
+                    <a href="#productos" class="border border-white/20 text-white font-bold px-8 py-4 rounded-2xl hover:bg-white/10 transition-colors">
+                        Ver mochilas de cobertura
+                    </a>
+                </div>
+            </div>
+
+            <!-- Panel Lateral de Confianza -->
+            <div class="lg:col-span-5 bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-md">
+                <h3 class="text-xl font-bold mb-6 text-next-cyan flex items-center gap-2">
+                    <i class="fas fa-shield-alt"></i> Nuestro Manifiesto Next
+                </h3>
+                <div class="space-y-6 text-sm">
+                    <div class="flex gap-4">
+                        <div class="text-next-cyan text-xl"><i class="fas fa-notes-medical"></i></div>
+                        <div>
+                            <h4 class="font-bold text-white mb-1">Cero estrés financiero</h4>
+                            <p class="text-slate-300">Tu salud es primero. Nosotros asumimos los pagos directos al hospital para que una urgencia no vacíe tus ahorros de viaje.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="text-next-cyan text-xl"><i class="fas fa-helicopter"></i></div>
+                        <div>
+                            <h4 class="font-bold text-white mb-1">Rescate donde el GPS no llega</h4>
+                            <p class="text-slate-300">Desde un sendero andino hasta un poblado remoto, enviamos la logística exacta para evacuaciones en terrenos complejos.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="text-next-cyan text-xl"><i class="fas fa-globe-americas"></i></div>
+                        <div>
+                            <h4 class="font-bold text-white mb-1">Dejamos huella verde</h4>
+                            <p class="text-slate-300">Respiramos el mismo aire que tú. Destinamos un porcentaje de cada póliza a proteger los santuarios naturales que visitas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pilares de Servicio -->
+    <section class="py-12 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600 shrink-0 text-xl">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div>
+                    <h5 class="font-bold text-sm">Acción Inmediata</h5>
+                    <p class="text-xs text-slate-500">Tu urgencia es prioridad cero</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600 shrink-0 text-xl">
+                    <i class="fas fa-mountain"></i>
+                </div>
+                <div>
+                    <h5 class="font-bold text-sm">Botas en la Tierra</h5>
+                    <p class="text-xs text-slate-500">Cero excusas en alta montaña</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600 shrink-0 text-xl">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div>
+                    <h5 class="font-bold text-sm">Faro en la Noche</h5>
+                    <p class="text-xs text-slate-500">Línea vital en español 24/7</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600 shrink-0 text-xl">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div>
+                    <h5 class="font-bold text-sm">Empatía Real</h5>
+                    <p class="text-xs text-slate-500">Hablamos desde la experiencia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Productos -->
+    <section id="productos" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-next-cyan font-bold uppercase tracking-widest text-xs">Aprobados por SBS 2026</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 text-slate-900">Tu armadura para el camino</h2>
+                <p class="text-slate-500 mt-3">Diseñamos cinco mochilas de cobertura. Elige la que soporte el clima, la geografía y el nivel de adrenalina de tu próximo sello en el pasaporte.</p>
+            </div>
+
+            <!-- Grid de 3 Planes Principales -->
+            <div class="grid lg:grid-cols-3 gap-8 mb-8">
+                <!-- Plan Platinium -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-xl overflow-hidden hover:scale-[1.02] transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="p-8 pb-4 border-b border-slate-100 bg-slate-900 text-white relative">
+                            <span class="absolute top-4 right-4 bg-next-cyan text-slate-950 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Altas Cumbres</span>
+                            <h4 class="text-2xl font-bold">Plan Platinium</h4>
+                            <p class="text-sm text-slate-300 mt-2">Para quienes desafían los mapas. Cobertura total, sin miedo a lo desconocido.</p>
+                        </div>
+                        <div class="p-8 space-y-4 text-sm">
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Respaldo Médico Vital</span>
+                                <span class="font-bold text-slate-900">100.000 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Imprevistos y Cancelaciones</span>
+                                <span class="font-bold text-slate-900">Hasta 2.500 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Urgencias Dentales</span>
+                                <span class="font-bold text-slate-900">Hasta 1.500 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Farmacia en Ruta</span>
+                                <span class="font-bold text-slate-900">Hasta 2.500 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Robo con Tarjeta</span>
+                                <span class="font-bold text-slate-900">Hasta 1.000 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Equipaje Demorado</span>
+                                <span class="font-bold text-slate-900">Hasta 200 USD</span>
+                            </div>
+                            <div class="flex justify-between pb-2">
+                                <span class="text-slate-500 font-medium">Rastreo de tu Mochila</span>
+                                <span class="font-bold text-emerald-600">Misión Incluida</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 pt-0">
+                        <button onclick="startVapiCall()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                            <i class="fas fa-microphone"></i> Preguntar si sirve para mi ruta
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan Gold -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-xl overflow-hidden hover:scale-[1.02] transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="p-8 pb-4 border-b border-slate-100">
+                            <span class="bg-slate-100 text-slate-800 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider block w-fit mb-2">Aventurero Constante</span>
+                            <h4 class="text-2xl font-bold text-slate-900">Plan Gold</h4>
+                            <p class="text-sm text-slate-500 mt-2">El compañero de viaje ideal para nómadas activos y corazones inquietos.</p>
+                        </div>
+                        <div class="p-8 space-y-4 text-sm">
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Respaldo Médico Vital</span>
+                                <span class="font-bold text-slate-900">40.000 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Imprevistos y Cancelaciones</span>
+                                <span class="font-bold text-slate-900">Hasta 500 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Urgencias Dentales</span>
+                                <span class="font-bold text-slate-900">Hasta 1.000 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Farmacia en Ruta</span>
+                                <span class="font-bold text-slate-900">Hasta 1.500 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Robo con Tarjeta</span>
+                                <span class="font-bold text-slate-900">Hasta 1.000 USD</span>
+                            </div>
+                            <div class="flex justify-between pb-2">
+                                <span class="text-slate-500 font-medium">Equipaje Demorado</span>
+                                <span class="font-bold text-slate-900">Hasta 150 USD</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 pt-0">
+                        <button onclick="startVapiCall()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                            <i class="fas fa-microphone"></i> Preguntar si sirve para mi ruta
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan Europlan -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-xl overflow-hidden hover:scale-[1.02] transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="p-8 pb-4 border-b border-slate-100">
+                            <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider block w-fit mb-2">Visado Schengen</span>
+                            <h4 class="text-2xl font-bold text-slate-900">Plan Europlan</h4>
+                            <p class="text-sm text-slate-500 mt-2">Tu pasaporte de tranquilidad a Europa. Cumple 100% con los requisitos fronterizos.</p>
+                        </div>
+                        <div class="p-8 space-y-4 text-sm">
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Respaldo Médico Vital</span>
+                                <span class="font-bold text-slate-900">35.000 EUR</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Imprevistos y Cancelaciones</span>
+                                <span class="font-bold text-slate-900">Hasta 100 EUR</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Urgencias Dentales</span>
+                                <span class="font-bold text-slate-900">Hasta 1.000 EUR</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Farmacia en Ruta</span>
+                                <span class="font-bold text-slate-900">Hasta 1.500 EUR</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Robo con Tarjeta</span>
+                                <span class="font-bold text-slate-900">Hasta 1.000 EUR</span>
+                            </div>
+                            <div class="flex justify-between pb-2">
+                                <span class="text-slate-500 font-medium">Equipaje Demorado</span>
+                                <span class="font-bold text-slate-900">Hasta 100 EUR</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 pt-0">
+                        <button onclick="startVapiCall()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                            <i class="fas fa-microphone"></i> Preguntar si sirve para mi ruta
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de 2 Planes Secundarios -->
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Plan Silver -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-xl overflow-hidden hover:scale-[1.01] transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="p-8 pb-4 border-b border-slate-100">
+                            <span class="bg-slate-100 text-slate-800 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider block w-fit mb-2">Escapadas Ligeras</span>
+                            <h4 class="text-2xl font-bold text-slate-900">Plan Silver</h4>
+                            <p class="text-sm text-slate-500 mt-2">Protección esencial para viajes cortos, retiros de fin de semana o rutas nacionales.</p>
+                        </div>
+                        <div class="p-8 space-y-3 text-sm">
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Respaldo Médico Vital</span>
+                                <span class="font-bold text-slate-900">15.000 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Imprevistos y Cancelaciones</span>
+                                <span class="font-bold text-slate-900">Hasta 150 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Urgencias Dentales</span>
+                                <span class="font-bold text-slate-900">Hasta 1.000 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Farmacia en Ruta</span>
+                                <span class="font-bold text-slate-900">Hasta 1.500 USD</span>
+                            </div>
+                            <div class="flex justify-between pb-2">
+                                <span class="text-slate-500 font-medium">Robo con Tarjeta</span>
+                                <span class="font-bold text-slate-900">Hasta 1.000 USD</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 pt-0">
+                        <button onclick="startVapiCall()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                            <i class="fas fa-microphone"></i> Preguntar si sirve para mi ruta
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan Basic Student -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-xl overflow-hidden hover:scale-[1.01] transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="p-8 pb-4 border-b border-slate-100">
+                            <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider block w-fit mb-2">Inmersión Académica</span>
+                            <h4 class="text-2xl font-bold text-slate-900">Plan Basic Student</h4>
+                            <p class="text-sm text-slate-500 mt-2">Hecho a la medida para intercambios, voluntariados y largas estancias aprendiendo lejos de casa.</p>
+                        </div>
+                        <div class="p-8 space-y-3 text-sm">
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Respaldo Médico Vital</span>
+                                <span class="font-bold text-slate-900">100.000 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Imprevistos y Cancelaciones</span>
+                                <span class="font-bold text-slate-900">Hasta 250 USD</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500 font-medium">Robo con Tarjeta</span>
+                                <span class="font-bold text-slate-900">Hasta 1.000 USD</span>
+                            </div>
+                            <div class="flex justify-between pb-2">
+                                <span class="text-slate-500 font-medium">Repatriación Segura</span>
+                                <span class="font-bold text-emerald-600">Garantizada</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 pt-0">
+                        <button onclick="startVapiCall()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                            <i class="fas fa-microphone"></i> Preguntar si sirve para mi ruta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ventajas de los Seguros Next de Aventura -->
+    <section id="coberturas" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6">
+                    <span class="text-next-cyan font-bold uppercase tracking-widest text-xs">Rompiendo el Molde</span>
+                    <h2 class="text-4xl font-bold text-slate-900 tracking-tight leading-tight">No leemos manuales, leemos mapas de ruta.</h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        Las aseguradoras tradicionales te abandonan cuando sales del asfalto. En Next Seguros somos montañistas, nómadas y curiosos crónicos. Adaptamos nuestra letra pequeña para que se ajuste a tus botas de trekking y a tus ganas de mundo.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-700 shrink-0 mt-1">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900">Tu adrenalina, respaldada</h5>
+                                <p class="text-sm text-slate-500 font-light">Senderismo de altitud, kayak, vías ferratas y ciclismo en montaña. Respiramos tu mismo aire y cubrimos tus pasiones sin recargos sorpresa.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-700 shrink-0 mt-1">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900">Tu equipo técnico es sagrado</h5>
+                                <p class="text-sm text-slate-500 font-light">Esa cámara profesional o la mochila técnica que tanto te costó, viajan protegidas. Te respaldamos ante daños o pérdidas que arruinen tu expedición.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-700 shrink-0 mt-1">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900">Hablamos tu idioma, y el de ellos</h5>
+                                <p class="text-sm text-slate-500 font-light">Un médico en Asia o África no será una barrera. Te ponemos al teléfono con traductores médicos para que entiendas perfectamente tu diagnóstico.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6 h-[480px]">
+                    <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=600&q=80" alt="Machu Picchu" class="rounded-3xl shadow-xl object-cover w-full h-full relative z-10">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=600&q=80" alt="Ruta de montaña" class="rounded-3xl shadow-xl object-cover w-full h-full mt-10 relative z-10">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Comunes a Todos los Planes -->
+    <section id="servicios-comunes" class="py-20 bg-slate-900 text-white relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-next-cyan font-bold uppercase tracking-widest text-xs">Estándar en Todas Nuestras Pólizas</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2">Básicos innegociables para nosotros</h2>
+                <p class="text-slate-400 mt-3">Sin importar si viajas a la ciudad vecina o al Himalaya, estas promesas de vida viajan siempre en tu bolsillo.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:border-white/20 transition-all">
+                    <div class="text-3xl text-next-cyan mb-4"><i class="fas fa-ambulance"></i></div>
+                    <h4 class="text-lg font-bold mb-2">Evacuación Inmediata</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Si la montaña se complica, costeamos tu traslado médico de urgencia hasta un lugar seguro.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:border-white/20 transition-all">
+                    <div class="text-3xl text-next-cyan mb-4"><i class="fas fa-ribbon"></i></div>
+                    <h4 class="text-lg font-bold mb-2">Regreso Digno</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Ante lo impensable, garantizamos a tu familia la repatriación y gestión sin burocracia dolorosa.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:border-white/20 transition-all">
+                    <div class="text-3xl text-next-cyan mb-4"><i class="fas fa-balance-scale"></i></div>
+                    <h4 class="text-lg font-bold mb-2">Defensa de Ruta</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Choques culturales que terminan mal. Incluimos asistencia legal por encima de los 1.000 USD/EUR.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:border-white/20 transition-all">
+                    <div class="text-3xl text-next-cyan mb-4"><i class="fas fa-hand-holding-usd"></i></div>
+                    <h4 class="text-lg font-bold mb-2">Fianza Desbloqueada</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Respaldamos depósitos de fianza judicial para sacarte de aprietos legales en el extranjero rápidamente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Asesoría: Santi -->
+    <section id="asesoria" class="py-24 bg-slate-100 relative z-10">
+        <div class="max-w-5xl mx-auto bg-white rounded-[3rem] p-10 md:p-16 border border-slate-200 shadow-xl flex flex-col md:flex-row items-center gap-12">
+            <div class="shrink-0 relative">
+                <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&h=400&q=80" 
+                     alt="Santi Asesor Experto" 
+                     class="w-56 h-56 rounded-3xl object-cover shadow-2xl border-8 border-slate-50 relative z-10">
+                <div class="absolute -bottom-4 -right-4 bg-green-500 text-white px-6 py-2 rounded-full text-xs font-bold shadow-lg uppercase tracking-wide z-20">En Base Camp</div>
+            </div>
+            <div class="text-center md:text-left space-y-4">
+                <span class="text-cyan-600 font-bold uppercase tracking-widest text-xs">Tu Compañero de Ruta</span>
+                <h2 class="text-4xl font-bold italic tracking-tight text-slate-900 leading-tight">Santi tiene tu espalda. Llámalo.</h2>
+                <p class="text-slate-600 leading-relaxed text-lg font-light">
+                    Santi no es un vendedor de escritorio, es tu compañero de <i>base camp</i>. Te ayuda a elegir tu póliza antes de volar, y <strong>viaja contigo en tu bolsillo</strong>. Si te pierdes en una ruta, necesitas un traductor médico urgente o quieres recomendaciones de zonas seguras, solo abre el micrófono. Él está 24/7 listo para asistirte en tiempo real.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                    <button onclick="startVapiCall()" class="accent-gradient text-white font-bold px-10 py-4 rounded-2xl hover:scale-105 transition-all shadow-xl shadow-cyan-100 flex items-center justify-center gap-3">
+                        <i class="fas fa-phone-alt"></i> Conversar con Santi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Preguntas Frecuentes -->
+    <section class="py-24 bg-white relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Mapas y Brújulas: Dudas Frecuentes</h2>
+                <p class="text-slate-500 mt-2">Respuestas transparentes para que empacar sea tu única preocupación.</p>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-slate-50 rounded-2xl border border-slate-100 p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-bold text-slate-900">
+                        <span>Odio los call centers, ¿cómo me ayudan rápido?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="text-slate-600 mt-4 text-sm leading-relaxed">
+                            Nosotros también los odiamos. Por eso creamos a Santi. Solo toca el botón de la esquina y cuéntale por voz qué necesitas o a dónde vas. Él armará tu póliza o enviará tu rescate en tiempo real, sin musiquitas de espera ni menús telefónicos infinitos.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl border border-slate-100 p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-bold text-slate-900">
+                        <span>¿Santi solo me ayuda a comprar el seguro?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="text-slate-600 mt-4 text-sm leading-relaxed">
+                            ¡Para nada! Santi es tu <strong>concierge de viaje 24/7</strong>. Una vez en tu destino, puedes llamarlo para que actúe como traductor en un hospital extranjero, te informe sobre alertas climáticas en tu ruta de senderismo, o te indique el centro médico más cercano según tu GPS. Es como llevar a un experto local en el bolsillo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl border border-slate-100 p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-bold text-slate-900">
+                        <span>Si me pierdo en un sendero, ¿Santi me puede ayudar a navegar?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="text-slate-600 mt-4 text-sm leading-relaxed">
+                            Absolutamente. Si tienes conexión, Santi puede procesar tu ubicación, darte información sobre el terreno, coordinar con autoridades locales si es necesario un rescate, y mantenerte en calma dándote instrucciones precisas de primeros auxilios o navegación mientras llega la ayuda.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl border border-slate-100 p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-bold text-slate-900">
+                        <span>Voy de mochilero a Europa, ¿cuál es mi escudo ideal?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="text-slate-600 mt-4 text-sm leading-relaxed">
+                            Si tu brújula apunta a Europa, el <strong>Plan Europlan</strong> es tu llave maestra. Lo blindamos con los 35.000 euros exactos que exigen los estrictos oficiales de migración de la zona Schengen para que pases fronteras sonriendo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Corporativo -->
+    <footer class="bg-next-dark text-slate-400 py-16 px-6 border-t border-slate-900 relative z-10">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 text-sm">
+            <div class="space-y-4">
+                <div class="text-2xl font-extrabold tracking-tighter text-white flex items-center gap-2">
+                    <i class="fas fa-compass text-next-cyan"></i>
+                    <span>NEXT<span class="font-light text-slate-500 text-base ml-1">SEGUROS</span></span>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Compañeros de expedición en forma de asistencia internacional. Cuidamos a los apasionados de la montaña, la cultura viva y las rutas en la naturaleza salvaje.
+                </p>
+            </div>
+            <div class="space-y-4">
+                <h5 class="text-white font-bold uppercase tracking-wider text-xs">Armaduras SBS 2026</h5>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#productos" class="hover:text-white transition">Plan Platinium (100k USD)</a></li>
+                    <li><a href="#productos" class="hover:text-white transition">Plan Gold (40k USD)</a></li>
+                    <li><a href="#productos" class="hover:text-white transition">Plan Europlan (35k EUR)</a></li>
+                    <li><a href="#productos" class="hover:text-white transition">Plan Silver (15k USD)</a></li>
+                    <li><a href="#productos" class="hover:text-white transition">Plan Basic Student (100k USD)</a></li>
+                </ul>
+            </div>
+            <div class="space-y-4">
+                <h5 class="text-white font-bold uppercase tracking-wider text-xs">Rescate Global</h5>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Radar y asistencia humana en español encendida las 24 horas, sin importar tu huso horario.
+                </p>
+                <p class="text-white font-semibold flex items-center gap-2 text-xs">
+                    <i class="fas fa-phone-alt text-next-cyan"></i> Frecuencia directa: #360
+                </p>
+            </div>
+            <div class="space-y-4">
+                <h5 class="text-white font-bold uppercase tracking-wider text-xs">Deuda con el Planeta</h5>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Devolvemos lo que exploramos. Aportamos activamente a proyectos locales de conservación en las cumbres y selvas que nos regalan vida.
+                </p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-900 text-center flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600">
+            <p>© 2026 Next Travel Insurance. Buen viento, buena ruta y avalados por SBS Seguros.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-slate-400">Pacto de Privacidad</a>
+                <a href="#" class="hover:text-slate-400">Letra Legal</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica de Interfaz Estándar -->
+    <script>
+      function toggleFaq(element) {
+          const content = element.querySelector('.faq-content');
+          const icon = element.querySelector('.fa-chevron-down');
+          
+          if (content.style.maxHeight === '0px' || !content.style.maxHeight) {
+              content.style.maxHeight = content.scrollHeight + 'px';
+              icon.style.transform = 'rotate(180deg)';
+          } else {
+              content.style.maxHeight = '0px';
+              icon.style.transform = 'rotate(0deg)';
+          }
+      }
+
+      // Conecta los botones azules de la página con el widget oficial de Vapi
+      function startVapiCall() {
+          const vapiButton = document.querySelector('vapi-cb') || document.querySelector('[class*="vapi"]');
+          if (vapiButton) {
+              vapiButton.click();
+          } else {
+              alert("Santi está encendiendo el comunicador. Por favor, usa el botón de la esquina.");
+          }
+      }
+    </script>
+
+    <!-- CÓDIGO OFICIAL DE VAPI -->
+    <script
+      src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js"
+      defer
+      async
+    ></script>
+
+    <script>
+      window.addEventListener('load', () => {
+        window.vapiSDK.run({
+          apiKey: '19824c02-6be2-4cac-b246-195201135083',
+          assistant: 'c3bd7a4c-4ba0-4b0e-8509-2adff6d0b74c',
+          config: {
+            position: 'bottom-right'
+          }
+        });
+      });
+    </script>
+
+</body>
+</html>
